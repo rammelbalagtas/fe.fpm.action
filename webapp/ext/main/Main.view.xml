@@ -1,0 +1,28 @@
+<mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:macros="sap.fe.macros" xmlns:macrosTable="sap.fe.macros.table" xmlns:ce="sap.ui.codeeditor" xmlns:l="sap.ui.layout" xmlns:f="sap.f" controllerName="fe.fpm.action.ext.main.Main">
+    <f:DynamicPage id="Main" class="sapUiResponsiveContentPadding">
+        <f:title>
+            <f:DynamicPageTitle id="_IDGenDynamicPageTitle1">
+                <f:heading>
+                    <Title id="_IDGenTitle1" text="Parameters" level="H2"/>
+                </f:heading>
+                <f:snappedContent>
+                    <Text id="_IDGenText" text="Test"/>
+                </f:snappedContent>
+            </f:DynamicPageTitle>
+        </f:title>
+        <f:header>
+            <f:DynamicPageHeader id="_IDGenDynamicPageHeader1" pinnable="true">
+                <VBox id="_IDGenVBox1">
+                    <macros:FilterBar metaPath="@com.sap.vocabularies.UI.v1.SelectionFields" visible="true" id="FilterBar"/>
+                </VBox>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <macros:Table metaPath="@com.sap.vocabularies.UI.v1.LineItem" id="LineItemTable" filterBar="FilterBar" type="ResponsiveTable" modeForNoDataMessage="text" rowCountMode="Auto">
+                <macros:actions>
+                    <macrosTable:Action key="ResetStatus" text="Reset (based on filter)" press=".onPressReset" placement="After" requiresSelection="false" id="ResetStatus"/>
+                </macros:actions>
+            </macros:Table>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>
