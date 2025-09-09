@@ -20,7 +20,8 @@
         <f:content>
             <macros:Table metaPath="@com.sap.vocabularies.UI.v1.LineItem" id="LineItemTable" filterBar="FilterBar" type="ResponsiveTable" modeForNoDataMessage="text" rowCountMode="Auto">
                 <macros:actions>
-                    <macrosTable:Action key="ResetStatus" text="Reset (based on filter)" press=".onPressReset" placement="After" requiresSelection="false" id="ResetStatus"/>
+                    <macrosTable:Action key="ProcessAll" text="Process (based on filter)" press=".onPressProcess" placement="After" requiresSelection="false" id="Process"/>
+                    <macrosTable:Action key="ResetAll" text="Reset (based on filter)" press=".onPressReset" placement="After" requiresSelection="false" id="Reset"/>
                 </macros:actions>
             </macros:Table>
         </f:content>

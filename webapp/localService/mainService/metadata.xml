@@ -97,6 +97,7 @@
             </Action>
             <Action Name="approveAll" IsBound="true">
                 <Parameter Name="_it" Type="Collection(com.sap.gateway.srvd.zsd_travel_ce.v0001.ZI_TRAVEL_CEType)" Nullable="false"/>
+                <Parameter Name="_travel" Type="Collection(com.sap.gateway.srvd.zsd_travel_ce.v0001.za_travel_table)" Nullable="false"/>
             </Action>
             <Action Name="resetSelected" EntitySetPath="_it" IsBound="true">
                 <Parameter Name="_it" Type="com.sap.gateway.srvd.zsd_travel_ce.v0001.ZI_TRAVEL_CEType" Nullable="false"/>
@@ -139,7 +140,7 @@
                 <Annotation Term="SAP__common.Label" String="Currency"/>
             </Annotations>
             <Annotations Target="SAP__self.ZI_TRAVEL_CEType/Approved">
-                <Annotation Term="SAP__common.Label" String="Approved"/>
+                <Annotation Term="SAP__common.Label" String="Processed"/>
                 <Annotation Term="SAP__common.Heading" String="Truth Value"/>
                 <Annotation Term="SAP__common.QuickInfo" String="Truth Value: True/False"/>
             </Annotations>
@@ -259,7 +260,7 @@
                             <PropertyValue Property="Value" Path="Approved"/>
                         </Record>
                         <Record Type="SAP__UI.DataFieldForAction">
-                            <PropertyValue Property="Label" String="Approve"/>
+                            <PropertyValue Property="Label" String="Process (based on selection)"/>
                             <PropertyValue Property="Action" String="com.sap.gateway.srvd.zsd_travel_ce.v0001.approveTravel(com.sap.gateway.srvd.zsd_travel_ce.v0001.ZI_TRAVEL_CEType)"/>
                             <PropertyValue Property="InvocationGrouping" EnumMember="SAP__UI.OperationGroupingType/Isolated"/>
                         </Record>

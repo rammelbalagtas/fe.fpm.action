@@ -75,8 +75,48 @@ sap.ui.define(
                 var fnSuccess = function (oResponse) {
                     this.oGlobalBusyDialog.close();
                     oModel.refresh();
-                    //var oFilterBar = this.byId("FilterBar");
-                    //oFilterBar.triggerSearch();
+                    var oFilterBar = this.byId("FilterBar");
+                    oFilterBar.triggerSearch();
+                }.bind(this);
+                //Error function to display error messages from OData Operation
+                var fnError = function (oError) {
+                    this.oGlobalBusyDialog.close();
+                }.bind(this);
+
+                oOperation.setParameter("_travel", Travels);
+                // Execute OData V4 operation i.e a static action to upload the file
+                oOperation.invoke().then(fnSuccess, fnError)
+            },
+            onPressProcess: function () {
+                var allFilters = [];
+                const filterBar = this.getView()?.byId("FilterBar");
+                const filters = filterBar.getFilters().filters[0];
+                if (Array.isArray(filters?.getFilters())) {
+                    allFilters = filters.getFilters();
+                    // If filters[0] is an object, wrap it in an array and return
+                } else if (filters) {
+                    allFilters = [filters];
+                }
+                var Travels = [];
+                if (allFilters) {
+                    allFilters.forEach(filter => {
+                        if (filter.getPath() === "Travel_ID") {
+                            const travel = { operator: filter.sOperator, travel_id_low: filter.oValue1, travel_id_high: filter.oValue2 };
+                            Travels.push(travel);
+                        } else {
+                        }
+                    });
+                }
+
+                this.oGlobalBusyDialog.open();
+                var oModel = this.getView().getModel();
+                var oOperation = oModel.bindContext("/ZI_TRAVEL_CE/com.sap.gateway.srvd.zsd_travel_ce.v0001.approveAll(...)");
+                //Success function to display success messages from OData Operation
+                var fnSuccess = function (oResponse) {
+                    this.oGlobalBusyDialog.close();
+                    oModel.refresh();
+                    var oFilterBar = this.byId("FilterBar");
+                    oFilterBar.triggerSearch();
                 }.bind(this);
                 //Error function to display error messages from OData Operation
                 var fnError = function (oError) {
